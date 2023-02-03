@@ -1,14 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const connectToDB = require("./config/db");
+const userRoutes = require("./routes/userRoutes");
 const app = express();
-const userRouter = require("./routes/userRoutes")
 
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
 connectToDB();
-
-app.get("/", userRouter);
+app.use("/", userRoutes);
 
 module.exports = app;
